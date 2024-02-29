@@ -19,7 +19,7 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider" />
-    <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+    <li class="nav-item">
         <a class="nav-link" th:href="@{/admin/category/list}">
             <i class="fas fa-fw fa-calendar"></i>
             <span>Categories</span></a>
