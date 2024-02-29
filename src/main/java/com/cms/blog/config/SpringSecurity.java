@@ -42,7 +42,7 @@ public class SpringSecurity {
                         .permitAll())
         .logout(
                 logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/admin/user/logout"))
                         .permitAll());
         return http.build();
     }
