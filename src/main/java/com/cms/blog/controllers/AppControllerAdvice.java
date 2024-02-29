@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.cms.blog.components.AppComponent;
 import com.cms.blog.entities.SiteUser;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ControllerAdvice
 public class AppControllerAdvice {
     @Autowired
