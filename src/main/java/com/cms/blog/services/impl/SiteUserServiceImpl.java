@@ -39,6 +39,11 @@ public class SiteUserServiceImpl implements SiteUserService {
         siteUserRepository.save(siteUser);
     }
 
+    
+    public void updateUser(SiteUser siteUser) {
+        siteUserRepository.save(siteUser);
+    }
+
     @Override
     public SiteUser findByEmail(String email) {
         return siteUserRepository.findByEmail(email);
@@ -49,4 +54,10 @@ public class SiteUserServiceImpl implements SiteUserService {
         role.setName("ROLE_EMPLOYEE");
         return roleRepository.save(role);
     }
+
+    public void updateUserPassword(Long userId, String password){
+        String encodedPassowrd = passwordEncoder.encode(password);
+
+        siteUserRepository.updateUserPassword(userId, encodedPassowrd);
+    }  
 }
