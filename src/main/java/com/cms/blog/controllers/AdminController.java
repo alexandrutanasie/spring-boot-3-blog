@@ -28,11 +28,11 @@ public class AdminController {
         return "dashboard";
     }
     
-    @GetMapping("/categories/list")
+    @GetMapping("/category/list")
     public String getCategoriesList(Model model) {
         List<Category> categories = categoryService.getAllCategories();    
 
         model.addAttribute("categories", categories);
-        return "admin/categories";
+        return "admin/category/list";
     }
 }
