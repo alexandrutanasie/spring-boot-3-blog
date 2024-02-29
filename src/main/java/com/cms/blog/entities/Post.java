@@ -18,11 +18,13 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Data
 @Entity
 public class Post {
+    @Transient
     private AppComponent appComponent;
 
     public Post(AppComponent appComponent){
