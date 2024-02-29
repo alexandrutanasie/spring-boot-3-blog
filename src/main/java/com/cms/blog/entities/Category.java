@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
@@ -29,10 +30,12 @@ public class Category {
     @Column(name = "message", columnDefinition = "TEXT", nullable = true)
     private String content;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    private String url;
 
     private String status;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     @ManyToMany(mappedBy = "categories")
     List<Post> posts = new ArrayList<>();
