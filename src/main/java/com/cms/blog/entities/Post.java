@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cms.blog.components.AppComponent;
 
@@ -19,29 +20,26 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
 @Entity
-public class Post {
-    @Transient
-    private AppComponent appComponent;
-
-    public Post(AppComponent appComponent){
-        this.appComponent = appComponent;
-    }
-    
+public class Post {    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
      
+    @NotEmpty(message = "Title is required")
     private String title;
     private String metaTitle;
     private String metaDescription;
-
-    @Column(name = "message", columnDefinition = "TEXT", nullable = true)
+    
+    @Column(name = "content", columnDefinition = "TEXT", nullable = true)
     private String content;
 
+    @NotEmpty(message = "Url is required")
+    @Column(name = "url", unique = true)
     private String url;
 
     private String status;
@@ -57,10 +55,4 @@ public class Post {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     List<Category> categories = new ArrayList<>();
-
-
-    @PrePersist
-    protected void onCreate() {
-        createdBy = appComponent.getCurrentUser();
-    }
 }
