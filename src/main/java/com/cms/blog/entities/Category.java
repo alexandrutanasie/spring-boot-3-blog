@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -22,14 +21,17 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-     
+    
+    @NotEmpty(message = "Title is required")
     private String title;
     private String metaTitle;
     private String metaDescription;
 
-    @Column(name = "message", columnDefinition = "TEXT", nullable = true)
+    @Column(name = "content", columnDefinition = "TEXT", nullable = true)
     private String content;
 
+    @NotEmpty(message = "Url is required")
+    @Column(name = "url", unique = true)
     private String url;
 
     private String status;

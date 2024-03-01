@@ -6,4 +6,6 @@ import com.cms.blog.entities.Category;
 
 public interface CategoryService {
     List<Category> getAllCategories();
+
+    void saveCategory(Category category);
 }
