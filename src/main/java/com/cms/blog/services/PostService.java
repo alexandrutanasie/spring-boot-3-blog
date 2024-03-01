@@ -10,4 +10,5 @@ public interface PostService {
     Optional<Post> findById(Long Id);
     void savePost(Post post);
     void deleteById(Long Id);
+    List<Post> findTop6ByOrderByCreatedAtDesc();
 }
