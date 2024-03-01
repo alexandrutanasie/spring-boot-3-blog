@@ -55,4 +55,9 @@ public class Post {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     List<Category> categories = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Post{id=" + id + ", title='" + title + "'}";
+    }
 }

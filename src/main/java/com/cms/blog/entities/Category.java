@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +40,10 @@ public class Category {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", cascade = { CascadeType.ALL })
     List<Post> posts = new ArrayList<>();
-
+    @Override
+    public String toString() {
+        return "Category{id=" + id + ", title='" + title + "'}";
+    }
 }
