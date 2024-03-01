@@ -40,11 +40,12 @@
                 <p th:errors="*{content}" class="text-danger" th:if="${#fields.hasErrors('content')}"></p>
             </div>
 
-            <label>Categories:</label>
-            <select multiple="multiple" th:field="*{categories}">
-                <option th:each="category : ${allCategories}" th:value="${category.id}" th:text="${category.title}"></option>
-            </select>
-
+            <div class="form-group mb-3">
+                <label class="form-label">Categories:</label>
+                <select class="select2 form-control" multiple="multiple" th:field="*{categories}">
+                    <option th:each="category : ${allCategories}" th:value="${category.id}" th:text="${category.title}"></option>
+                </select>
+            </div>
             <div class="form-group mb-3">
                 <label class="form-label">Status:</label>
                 <div>
@@ -63,6 +64,11 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript" layout:fragment="footer-scripts" >
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 </body>
 
 </html>
