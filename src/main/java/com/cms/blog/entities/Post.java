@@ -18,8 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -55,6 +53,14 @@ public class Post {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     List<Category> categories = new ArrayList<>();
+
+    public String getShortDescription(){
+        String shortDescription = this.content;
+               shortDescription = AppComponent.stripHtmlTags(shortDescription);
+               shortDescription = AppComponent.truncateText(shortDescription, 200);
+
+        return shortDescription;
+    }
 
     @Override
     public String toString() {
