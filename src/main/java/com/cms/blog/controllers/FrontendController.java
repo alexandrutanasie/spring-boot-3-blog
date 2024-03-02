@@ -31,23 +31,19 @@ public class FrontendController {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<Category> categories = categoryService.getAllCategories();
         List<Post> latestPosts = postService.findTop6ByOrderByCreatedAtDesc();
         
         model.addAttribute("title", "Homepage");
         model.addAttribute("latestPosts", latestPosts);
-        model.addAttribute("categories", categories);
         return "index";
     }
 
     @GetMapping("/category/{url}")
     public String getCategoryPage(@PathVariable("url") String url, Model model) {
         Optional<Category> _category = categoryService.findByUrl(url);
-        List<Category> categories = categoryService.getAllCategories();
         if(_category.isPresent()){
            Category category = _category.get();
             model.addAttribute("category", category);
-            model.addAttribute("categories", categories);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -56,12 +52,10 @@ public class FrontendController {
 
     @GetMapping("/post/{url}")
     public String getPostPage(@PathVariable("url") String url, Model model) {
-        List<Category> categories = categoryService.getAllCategories();
         Optional<Post> _post = postService.findByUrl(url);
         if(_post.isPresent()){
            Post post = _post.get();
             model.addAttribute("post", post);
-            model.addAttribute("categories", categories);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
