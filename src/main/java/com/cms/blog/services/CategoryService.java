@@ -12,4 +12,5 @@ public interface CategoryService {
     void deleteById(Long Id);
 
     Optional<Category> findById(Long Id);
+    Optional<Category> findByUrl(String url);
 }

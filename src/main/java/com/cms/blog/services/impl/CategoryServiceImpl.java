@@ -27,6 +27,10 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findById(Id);
     }
 
+    public Optional<Category> findByUrl(String url){
+        return categoryRepository.findByUrl(url);
+    }
+
     public void deleteById(Long Id){
         categoryRepository.deleteById(Id);
     }

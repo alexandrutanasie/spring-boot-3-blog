@@ -31,6 +31,10 @@ public class PostServiceImpl implements PostService {
         return postRepository.findById(id);
     }
 
+    public Optional<Post> findByUrl(String url){
+        return postRepository.findByUrl(url);
+    }
+
     public List<Post> findTop6ByOrderByCreatedAtDesc(){
         return postRepository.findTop6ByOrderByCreatedAtDesc();
     }
